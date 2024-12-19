@@ -1,6 +1,6 @@
 public class PlayerHealth : Health
 {
-    override protected void OnDeath()
+    protected override void OnDeath()
     {
         SceneLoader.ReloadScene();
     }
