@@ -30,7 +30,7 @@ public class SmoothHealthBar : MonoBehaviour
         UpdateHealthBar();
     }
 
-    private void UpdateHealthBar(int health)
+    private void UpdateHealthBar(float health)
     {
         _currentHealth = health;
     }

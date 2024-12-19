@@ -1,33 +1,59 @@
-using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(CollisionDetector))]
 public class ItemCollector : MonoBehaviour
 {
-    [SerializeField] private TMP_Text _gemsText;
+    [SerializeField] private GemsView _gemsView;
 
+    private PlayerHealth _playerHealth;
+    private CollisionDetector _collisionDetector;
     private int _gems = 0;
+
+    private void Awake()
+    {
+        _playerHealth = FindFirstObjectByType<PlayerHealth>();
+        _collisionDetector = GetComponent<CollisionDetector>();
+    }
+
+    private void OnEnable()
+    {
+        _collisionDetector.OnTriggerEnter += CollectItem;
+    }
+
+    private void OnDisable()
+    {
+        _collisionDetector.OnTriggerEnter -= CollectItem;
+    }
 
     private void Start()
     {
-        UpdateGemsText();
+        _gemsView.Display(_gems);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void CollectItem(Collider2D other)
     {
         if (other.TryGetComponent(out Item item))
         {
+            if (item is Gem gem)
+            {
+                AddGem();
+            }
+            else if (item is Heal heal)
+            {
+                HealPlayer(heal.Amount);
+            }
+            
             item.Collect();
         }
     }
 
-    public void AddGem()
+    private void AddGem()
     {
-        _gems++;
-        UpdateGemsText();
+        _gemsView.Display(++_gems);
     }
 
-    private void UpdateGemsText()
+    private void HealPlayer(float amount)
     {
-        _gemsText.text = $"Gems: {_gems}";
+        _playerHealth.Heal(amount);
     }
 }

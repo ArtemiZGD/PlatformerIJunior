@@ -1,29 +1,34 @@
 using UnityEngine;
 
-public class EnemyAttack : MonoBehaviour
+[RequireComponent(typeof(CollisionDetector))]
+public class EnemyAttack : Attack
 {
-    [SerializeField] private int _damage;
-    [SerializeField] private float _attackSpeed;
-
-    private float _attackTimer = 0;
     private PlayerHealth _playerHealth = null;
+    private CollisionDetector _collisionDetector;
 
-    private void Update()
+    private void Awake()
     {
-        ProcessReload();
+        _collisionDetector = GetComponent<CollisionDetector>();
     }
 
-    private void LateUpdate()
+    private void OnEnable()
     {
-        ProcessAttack();
+        _collisionDetector.OnTriggerEnter += ProcessPlayerEnter;
+        _collisionDetector.OnTriggerExit += ProcessPlayerExit;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnDisable()
+    {
+        _collisionDetector.OnTriggerEnter -= ProcessPlayerEnter;
+        _collisionDetector.OnTriggerExit -= ProcessPlayerExit;
+    }
+
+    private void ProcessPlayerEnter(Collider2D other)
     {
         other.TryGetComponent(out _playerHealth);
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void ProcessPlayerExit(Collider2D other)
     {
         if (other.TryGetComponent(out PlayerHealth _))
         {
@@ -36,24 +41,12 @@ public class EnemyAttack : MonoBehaviour
         ProcessAttack();
     }
 
-    private void ProcessReload()
-    {
-        _attackTimer += Time.deltaTime;
-    }
-
-    private void ProcessAttack()
+    protected override void ProcessAttack()
     {
         if (IsAbleToAttack() && _playerHealth != null)
         {
-            _attackTimer = 0;
-            _playerHealth.TakeDamage(_damage);
+            ResetTimer();
+            _playerHealth.TakeDamage(Damage);
         }
-    }
-
-    private bool IsAbleToAttack()
-    {
-        if (_attackTimer >= 1 / _attackSpeed) return true;
-
-        return false;
     }
 }

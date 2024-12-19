@@ -560,6 +560,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7627717823812746170, guid: 02fb1f26b64bc40e9967d0e960e586f7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8008484299940325691, guid: 02fb1f26b64bc40e9967d0e960e586f7, type: 3}
       propertyPath: m_Name
       value: Bat (2)
@@ -946,7 +950,8 @@ GameObject:
   - component: {fileID: 431087436}
   - component: {fileID: 431087435}
   - component: {fileID: 431087438}
-  m_Layer: 6
+  - component: {fileID: 431087439}
+  m_Layer: 0
   m_Name: Ladder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1570,6 +1575,18 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!114 &431087439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431087433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1de89feeda3de41579dd747ba4588b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &431619248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,6 +1673,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1456518357}
     m_Modifications:
+    - target: {fileID: 1806447078668418413, guid: dff7c1fc1ad264541af5f2f7384d3bb3, type: 3}
+      propertyPath: _amount
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3162464462451668289, guid: dff7c1fc1ad264541af5f2f7384d3bb3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.49
@@ -2107,6 +2128,10 @@ PrefabInstance:
     - target: {fileID: 7627717823812746170, guid: 02fb1f26b64bc40e9967d0e960e586f7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627717823812746170, guid: 02fb1f26b64bc40e9967d0e960e586f7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -39.795795
       objectReference: {fileID: 0}
     - target: {fileID: 8008484299940325691, guid: 02fb1f26b64bc40e9967d0e960e586f7, type: 3}
       propertyPath: m_Name
@@ -4229,6 +4254,10 @@ PrefabInstance:
     - target: {fileID: 7627717823812746170, guid: 02fb1f26b64bc40e9967d0e960e586f7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627717823812746170, guid: 02fb1f26b64bc40e9967d0e960e586f7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -39.795795
       objectReference: {fileID: 0}
     - target: {fileID: 8008484299940325691, guid: 02fb1f26b64bc40e9967d0e960e586f7, type: 3}
       propertyPath: m_Name
@@ -8648,6 +8677,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1456518357}
     m_Modifications:
+    - target: {fileID: 1806447078668418413, guid: dff7c1fc1ad264541af5f2f7384d3bb3, type: 3}
+      propertyPath: _amount
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3162464462451668289, guid: dff7c1fc1ad264541af5f2f7384d3bb3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.55
@@ -9227,6 +9260,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1456518357}
     m_Modifications:
+    - target: {fileID: 1806447078668418413, guid: dff7c1fc1ad264541af5f2f7384d3bb3, type: 3}
+      propertyPath: _amount
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3162464462451668289, guid: dff7c1fc1ad264541af5f2f7384d3bb3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.59
@@ -9289,6 +9326,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1456518357}
     m_Modifications:
+    - target: {fileID: 1806447078668418413, guid: dff7c1fc1ad264541af5f2f7384d3bb3, type: 3}
+      propertyPath: _amount
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3162464462451668289, guid: dff7c1fc1ad264541af5f2f7384d3bb3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.64
@@ -9616,6 +9657,10 @@ PrefabInstance:
     - target: {fileID: 7627717823812746170, guid: 02fb1f26b64bc40e9967d0e960e586f7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627717823812746170, guid: 02fb1f26b64bc40e9967d0e960e586f7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -39.795795
       objectReference: {fileID: 0}
     - target: {fileID: 8008484299940325691, guid: 02fb1f26b64bc40e9967d0e960e586f7, type: 3}
       propertyPath: m_Name
@@ -10264,6 +10309,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1456518357}
     m_Modifications:
+    - target: {fileID: 1806447078668418413, guid: dff7c1fc1ad264541af5f2f7384d3bb3, type: 3}
+      propertyPath: _amount
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3162464462451668289, guid: dff7c1fc1ad264541af5f2f7384d3bb3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.65
@@ -10923,6 +10972,7 @@ GameObject:
   - component: {fileID: 1920225563}
   - component: {fileID: 1920225565}
   - component: {fileID: 1920225564}
+  - component: {fileID: 1920225566}
   m_Layer: 5
   m_Name: GemCounter
   m_TagString: Untagged
@@ -10946,8 +10996,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 129, y: -57}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 224.56549, y: -80.89136}
+  m_SizeDelta: {x: 391.131, y: 97.7827}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1920225564
 MonoBehaviour:
@@ -10996,8 +11046,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -11048,6 +11098,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920225562}
   m_CullTransparentMesh: 1
+--- !u!114 &1920225566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920225562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf695d7df1bc480da0965849b365e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gemsText: {fileID: 1920225564}
 --- !u!1 &1950543068
 GameObject:
   m_ObjectHideFlags: 0
@@ -11096,12 +11159,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -11406,6 +11469,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1456518357}
     m_Modifications:
+    - target: {fileID: 1806447078668418413, guid: dff7c1fc1ad264541af5f2f7384d3bb3, type: 3}
+      propertyPath: _amount
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3162464462451668289, guid: dff7c1fc1ad264541af5f2f7384d3bb3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.04
@@ -11513,7 +11580,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3818644442079072493, guid: 62390b6db2c3e4f71bf9f9bfb2601c47, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -39.795795
       objectReference: {fileID: 0}
     - target: {fileID: 3864267101589465154, guid: 62390b6db2c3e4f71bf9f9bfb2601c47, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11579,6 +11646,10 @@ PrefabInstance:
       propertyPath: _gemsText
       value: 
       objectReference: {fileID: 1920225564}
+    - target: {fileID: 9127920670040543994, guid: 62390b6db2c3e4f71bf9f9bfb2601c47, type: 3}
+      propertyPath: _gemsView
+      value: 
+      objectReference: {fileID: 1920225566}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

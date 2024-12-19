@@ -2,12 +2,12 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(CollisionDetector))]
 public class PlayerMovement : MonoBehaviour
 {
     private const string Horizontal = nameof(Horizontal);
     private const string Vertical = nameof(Vertical);
     private const string Jump = nameof(Jump);
-    private const string Ladder = nameof(Ladder);
     private const string Ground = nameof(Ground);
 
     [SerializeField] private float _moveSpeed;
@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _groundCheckRadius;
     [SerializeField] private float _groundCheckDownDistance;
 
+    private CollisionDetector _collisionDetector;
     private Rigidbody2D _rigidbody;
     private CircleCollider2D _collider;
     private bool _isOnLadder;
@@ -29,28 +30,39 @@ public class PlayerMovement : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CircleCollider2D>();
+        _collisionDetector = GetComponent<CollisionDetector>();
+    }
+
+    private void OnEnable()
+    {
+        _collisionDetector.OnTriggerEnter += ProcessLadderEnter;
+        _collisionDetector.OnTriggerExit += ProcessLadderExit;
     }
 
     private void Update()
     {
+        ProcessJump();
+    }
+
+    private void FixedUpdate()
+    {
         CheckGround();
         ProcessMovement();
-        ProcessJump();
         ProcessLadderMovement();
         ProcessGravity();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void ProcessLadderEnter(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer(Ladder))
+        if (collision.gameObject.TryGetComponent(out Ladder _))
         {
             _isOnLadder = true;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void ProcessLadderExit(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer(Ladder))
+        if (collision.gameObject.TryGetComponent(out Ladder _))
         {
             _isOnLadder = false;
         }

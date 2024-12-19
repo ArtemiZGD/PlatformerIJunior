@@ -1,19 +1,8 @@
 using UnityEngine;
 
-public class Heal : MonoBehaviour, Item
+public class Heal : Item
 {
-    [SerializeField] private int _healAmount;
+    [SerializeField] private float _amount;
 
-    private PlayerHealth _playerHealth;
-
-    private void Awake()
-    {
-        _playerHealth = FindFirstObjectByType<PlayerHealth>();
-    }
-
-    public void Collect()
-    {
-        _playerHealth.Heal(_healAmount);
-        Destroy(gameObject);
-    }
+    public float Amount => _amount;
 }

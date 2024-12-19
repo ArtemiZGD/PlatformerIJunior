@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BatAnimation : MonoBehaviour
 {
+    private const float MinVelocity = 0.1f;
+
     private readonly int IsMoving = Animator.StringToHash(nameof(IsMoving));
 
     [SerializeField] private Animator _animator;
@@ -16,7 +18,7 @@ public class BatAnimation : MonoBehaviour
 
     private void Update()
     {
-        bool isMoving = _batMovement.Velocity.magnitude > 0.1f || _batMovement.IsFollowingPlayer;
+        bool isMoving = _batMovement.Velocity.magnitude > MinVelocity || _batMovement.IsFollowingPlayer;
         _animator.SetBool(IsMoving, isMoving);
         _animator.transform.localScale = new Vector3(
             Mathf.Sign(_batMovement.Velocity.x) * _initialScale.x, 

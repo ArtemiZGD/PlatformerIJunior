@@ -1,29 +1,29 @@
 using System;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public abstract class Health : MonoBehaviour
 {
-    [SerializeField] private int _health;
+    [SerializeField] private float _health;
 
-    public Action<int> HealthChanged;
+    public Action<float> HealthChanged;
 
-    private int _maxHealth;
+    private float _maxHealth;
 
-    public int MaxHealth => _maxHealth;
+    public float MaxHealth => _maxHealth;
 
     private void Awake()
     {
         _maxHealth = _health;
     }
 
-    public void Heal(int healAmount)
+    public void Heal(float healAmount)
     {
         _health += Mathf.Max(0, healAmount);
         _health = Mathf.Min(_health, _maxHealth);
         HealthChanged?.Invoke(_health);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         _health -= Mathf.Max(0, damage);
 
@@ -36,8 +36,5 @@ public class Health : MonoBehaviour
         HealthChanged?.Invoke(_health);
     }
 
-    virtual protected void OnDeath()
-    {
-
-    }
+    protected abstract void OnDeath();
 }

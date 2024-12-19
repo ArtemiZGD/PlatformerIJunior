@@ -1,25 +1,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+[RequireComponent(typeof(CollisionDetector))]
+public class PlayerAttack : Attack
 {
-    [SerializeField] private int _damage;
-    [SerializeField] private float _attackSpeed;
-
-    private float _attackTimer = 0;
     private List<EnemyHealth> _enemies = new();
+    private CollisionDetector _collisionDetector;
 
-    private void Update()
+    private void Awake()
     {
-        ProcessReload();
+        _collisionDetector = GetComponent<CollisionDetector>();
     }
 
-    private void LateUpdate()
+    private void OnEnable()
     {
-        ProcessAttack();
+        _collisionDetector.OnTriggerEnter += AddEnemyToList;
+        _collisionDetector.OnTriggerExit += RemoveEnemyFromList;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnDisable()
+    {
+        _collisionDetector.OnTriggerEnter -= AddEnemyToList;
+        _collisionDetector.OnTriggerExit -= RemoveEnemyFromList;
+    }
+
+    private void AddEnemyToList(Collider2D other)
     {
         if (other.TryGetComponent(out EnemyHealth enemyHealth))
         {
@@ -27,7 +32,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void RemoveEnemyFromList(Collider2D other)
     {
         if (other.TryGetComponent(out EnemyHealth enemyHealth))
         {
@@ -35,24 +40,12 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private void ProcessReload()
-    {
-        _attackTimer += Time.deltaTime;
-    }
-
-    private void ProcessAttack()
+    protected override void ProcessAttack()
     {
         if (IsAbleToAttack() && _enemies.Count > 0)
         {
-            _attackTimer = 0;
-            _enemies[0].TakeDamage(_damage);
+            ResetTimer();
+            _enemies[0].TakeDamage(Damage);
         }
-    }
-
-    private bool IsAbleToAttack()
-    {
-        if (_attackTimer >= 1 / _attackSpeed) return true;
-
-        return false;
     }
 }
