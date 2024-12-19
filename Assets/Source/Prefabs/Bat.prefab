@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7ece1bfe1084139a52073d49d11bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 1
+  _damage: 2
   _attackSpeed: 2
 --- !u!1001 &5488506592365290683
 PrefabInstance:
@@ -359,6 +359,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2822189620478238207, guid: c6278fe25563945099b6842e48ea0d6d, type: 3}
       propertyPath: _health
+      value: 
+      objectReference: {fileID: 7562238484372882631}
+    - target: {fileID: 2822189620478238207, guid: c6278fe25563945099b6842e48ea0d6d, type: 3}
+      propertyPath: _barView
       value: 
       objectReference: {fileID: 7562238484372882631}
     - target: {fileID: 3829065531657383136, guid: c6278fe25563945099b6842e48ea0d6d, type: 3}

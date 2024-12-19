@@ -1,29 +1,29 @@
-using System;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class Health : BarView
 {
-    [SerializeField] private int _health;
+    [SerializeField] private float _health;
 
-    public Action<int> HealthChanged;
-
-    private int _maxHealth;
-
-    public int MaxHealth => _maxHealth;
+    private float _maxHealth;
 
     private void Awake()
     {
         _maxHealth = _health;
     }
 
-    public void Heal(int healAmount)
+    public override float GetStartValue()
+    {
+        return 1;
+    }
+
+    public void Heal(float healAmount)
     {
         _health += Mathf.Max(0, healAmount);
         _health = Mathf.Min(_health, _maxHealth);
-        HealthChanged?.Invoke(_health);
+        BarAmountChanged?.Invoke(_health / _maxHealth);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         _health -= Mathf.Max(0, damage);
 
@@ -33,11 +33,8 @@ public class Health : MonoBehaviour
             OnDeath();
         }
 
-        HealthChanged?.Invoke(_health);
+        BarAmountChanged?.Invoke(_health / _maxHealth);
     }
 
-    virtual protected void OnDeath()
-    {
-
-    }
+    protected virtual void OnDeath() { }
 }
