@@ -1,24 +1,28 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerVampirismAbility : MonoBehaviour
 {
+    private const int FullCharge = 1;
+
     [SerializeField] private PlayerHealth _playerHealth;
-    [SerializeField] private PlayerVampirismAbilityView _view;
-    [SerializeField] private float _vampirismDuration;
-    [SerializeField] private float _vampirismReloadTime;
-    [SerializeField] private float _vampirismRadius;
-    [SerializeField] private float _vampirismAmountInSecond;
-    [SerializeField] private KeyCode _vampirismKey;
+    [SerializeField] private float _duration;
+    [SerializeField] private float _reloadTime;
+    [SerializeField] private float _radius;
+    [SerializeField] private float _amountInSecond;
+    [SerializeField] private HotKeys _hotKeys;
+
+    public Action<bool> ChangeActivation;
+    public Action<Transform, float> SpawnParticles;
+    public Action<float> ChangeBarAmount;
 
     private float _vampirismTimer = 0;
     private bool _isVampirismActive = false;
     private bool _isVampirismReloading = false;
 
-    private void Start()
-    {
-        _view.Initialize(_vampirismRadius);
-    }
+    public float StartAmount => FullCharge;
+    public float VampirismRadius => _radius;
 
     private void Update()
     {
@@ -28,7 +32,7 @@ public class PlayerVampirismAbility : MonoBehaviour
         }
         else if (_isVampirismActive == false)
         {
-            if (Input.GetKeyDown(_vampirismKey))
+            if (Input.GetKeyDown(_hotKeys.VampirismKey))
             {
                 ActivateVampirism();
             }
@@ -46,9 +50,9 @@ public class PlayerVampirismAbility : MonoBehaviour
     private void Reload()
     {
         _vampirismTimer += Time.deltaTime;
-        _view.BarAmountChanged?.Invoke(_vampirismTimer / _vampirismReloadTime);
+        ChangeBarAmount?.Invoke(_vampirismTimer / _reloadTime);
 
-        if (_vampirismTimer >= _vampirismReloadTime)
+        if (_vampirismTimer >= _reloadTime)
         {
             _isVampirismReloading = false;
         }
@@ -57,39 +61,39 @@ public class PlayerVampirismAbility : MonoBehaviour
     private void ActivateVampirism()
     {
         _isVampirismActive = true;
-        _vampirismTimer = _vampirismDuration;
-        _view.SetActive(true);
+        _vampirismTimer = _duration;
+        ChangeActivation?.Invoke(true);
     }
 
     private void ProcessVampirism()
     {
         _vampirismTimer -= Time.deltaTime;
-        _view.BarAmountChanged?.Invoke(_vampirismTimer / _vampirismDuration);
+        ChangeBarAmount?.Invoke(_vampirismTimer / _duration);
 
         if (_vampirismTimer <= 0)
         {
             _isVampirismActive = false;
             _isVampirismReloading = true;
-            _view.SetActive(false);
+            ChangeActivation?.Invoke(false);
             return;
         }
 
         if (TryGetEnemiesInRange(out var enemies))
         {
-            float vampirismAmount = _vampirismAmountInSecond * Time.fixedDeltaTime;
+            float vampirismAmount = _amountInSecond * Time.fixedDeltaTime;
 
             foreach (var enemy in enemies)
             {
                 enemy.TakeDamage(vampirismAmount);
                 _playerHealth.Heal(vampirismAmount);
-                _view.SpawnParticles(enemy.transform, Time.fixedDeltaTime);
+                SpawnParticles?.Invoke(enemy.transform, Time.fixedDeltaTime);
             }
         }
     }
 
     private bool TryGetEnemiesInRange(out List<EnemyHealth> enemies)
     {
-        var colliders = Physics2D.OverlapCircleAll(transform.position, _vampirismRadius);
+        var colliders = Physics2D.OverlapCircleAll(transform.position, _radius);
 
         enemies = new List<EnemyHealth>();
 

@@ -5,8 +5,9 @@ using UnityEngine.AI;
 public class BatMovement : MonoBehaviour
 {
     [SerializeField] private float _distanceToTarget;
+    [SerializeField] private PlayerMovement _playerMovement;
+    [SerializeField] private BatSpawnPoints _batSpawnPoints;
 
-    private BatSpawnPoints _batSpawnPoints;
     private Transform _player;
     private Transform _target;
     private NavMeshAgent _navMeshAgent;
@@ -21,13 +22,8 @@ public class BatMovement : MonoBehaviour
         _navMeshAgent.updateRotation = false;
         _navMeshAgent.updateUpAxis = false;
         _isFollowingPlayer = true;
+        _player = _playerMovement.transform; 
         _target = _player;
-    }
-
-    private void Start()
-    {
-        _player = FindFirstObjectByType<PlayerMovement>().transform;
-        _batSpawnPoints = FindFirstObjectByType<BatSpawnPoints>();
     }
 
     private void Update()
@@ -37,7 +33,7 @@ public class BatMovement : MonoBehaviour
 
     private void SetTarget()
     {
-        if (_player == null || Vector3.Distance(transform.position, _player.position) > _distanceToTarget)
+        if (_player == null || transform.position.IsEnoughClose(_player.position, _distanceToTarget) == false)
         {
             if (_isFollowingPlayer)
             {

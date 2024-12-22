@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6706132075205128003}
   - component: {fileID: 7026956931934591149}
   - component: {fileID: 815706964250870447}
+  - component: {fileID: 217964087136018493}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -134,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 7397636622789300516}
-  _playerMovement: {fileID: 4600187411729883189}
+  _movement: {fileID: 4600187411729883189}
 --- !u!114 &9127920670040543994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a26a2483e13fd4a6d98b0a85d553809b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gemsView: {fileID: 0}
+  _playerHealth: {fileID: 6706132075205128003}
 --- !u!114 &6706132075205128003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,12 +189,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerHealth: {fileID: 6706132075205128003}
-  _view: {fileID: 5184940578047312229}
-  _vampirismDuration: 6
-  _vampirismReloadTime: 4
-  _vampirismRadius: 5
-  _vampirismAmountInSecond: 0.5
+  _duration: 6
+  _reloadTime: 4
+  _radius: 4
+  _amountInSecond: 0.5
   _vampirismKey: 49
+--- !u!114 &217964087136018493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2225726792989860469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c1fc7d9d7b54f348c0f9e39e0fa174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8375110040474401551
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +428,10 @@ PrefabInstance:
       propertyPath: _iBarView
       value: 
       objectReference: {fileID: 6706132075205128003}
+    - target: {fileID: 2830444849844260596, guid: c6278fe25563945099b6842e48ea0d6d, type: 3}
+      propertyPath: _health
+      value: 
+      objectReference: {fileID: 6706132075205128003}
     - target: {fileID: 4421360930486149589, guid: c6278fe25563945099b6842e48ea0d6d, type: 3}
       propertyPath: m_Name
       value: HealthBar
@@ -438,6 +454,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3864267101589465154}
     m_Modifications:
+    - target: {fileID: 48988973519733059, guid: 90da8d57187294a049e48aaacd655dd3, type: 3}
+      propertyPath: _playerVampirismAbility
+      value: 
+      objectReference: {fileID: 815706964250870447}
     - target: {fileID: 2236596657572330151, guid: 90da8d57187294a049e48aaacd655dd3, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -488,24 +508,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3276768139602438625, guid: 90da8d57187294a049e48aaacd655dd3, type: 3}
       propertyPath: m_Name
-      value: Vampirism
+      value: VampirismView
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90da8d57187294a049e48aaacd655dd3, type: 3}
---- !u!114 &5184940578047312229 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 48988973519733059, guid: 90da8d57187294a049e48aaacd655dd3, type: 3}
-  m_PrefabInstance: {fileID: 5141581122467708966}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1b9182d467474c69b85ce4e5dd97608, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &7738758129630949335 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3188275093928898545, guid: 90da8d57187294a049e48aaacd655dd3, type: 3}

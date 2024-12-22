@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 6015689503846432718}
   - component: {fileID: 7562238484372882631}
   - component: {fileID: 3808106956806174557}
+  - component: {fileID: 6667665222083901466}
   m_Layer: 0
   m_Name: Bat
   m_TagString: Untagged
@@ -220,6 +221,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _distanceToTarget: 5
+  _playerMovement: {fileID: 0}
+  _batSpawnPoints: {fileID: 0}
 --- !u!114 &6015689503846432718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 7910558583490602568}
-  _batMovement: {fileID: 3587690754622566081}
+  _movement: {fileID: 3587690754622566081}
 --- !u!114 &7562238484372882631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +264,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 2
   _attackSpeed: 2
+--- !u!114 &6667665222083901466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8008484299940325691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c1fc7d9d7b54f348c0f9e39e0fa174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5488506592365290683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -363,6 +378,10 @@ PrefabInstance:
       objectReference: {fileID: 7562238484372882631}
     - target: {fileID: 2822189620478238207, guid: c6278fe25563945099b6842e48ea0d6d, type: 3}
       propertyPath: _barView
+      value: 
+      objectReference: {fileID: 7562238484372882631}
+    - target: {fileID: 2830444849844260596, guid: c6278fe25563945099b6842e48ea0d6d, type: 3}
+      propertyPath: _health
       value: 
       objectReference: {fileID: 7562238484372882631}
     - target: {fileID: 3829065531657383136, guid: c6278fe25563945099b6842e48ea0d6d, type: 3}

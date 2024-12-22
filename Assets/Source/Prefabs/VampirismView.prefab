@@ -190,7 +190,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57d2b33cff9304ba8b70c9bca63a8fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _barView: {fileID: 48988973519733059}
   _bar: {fileID: 628428852273871457}
   _smoothSpeed: 5
 --- !u!1 &2246456040322291278
@@ -382,6 +381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1b9182d467474c69b85ce4e5dd97608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerVampirismAbility: {fileID: 0}
+  _bar: {fileID: 2149234167804491865}
   _particleSystem: {fileID: 686529406168570021}
   _particlesRate: 10
   _minParticleSpeed: 10
@@ -397,7 +398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3188275093928898545}
   m_Layer: 0
-  m_Name: Vampirism
+  m_Name: VampirismView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

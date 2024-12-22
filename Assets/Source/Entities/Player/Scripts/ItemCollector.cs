@@ -1,17 +1,18 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(CollisionDetector))]
 public class ItemCollector : MonoBehaviour
 {
-    [SerializeField] private GemsView _gemsView;
+    [SerializeField] private PlayerHealth _playerHealth;
 
-    private PlayerHealth _playerHealth;
+    public Action<int> CollectGem;
+
     private CollisionDetector _collisionDetector;
     private int _gems = 0;
 
     private void Awake()
     {
-        _playerHealth = FindFirstObjectByType<PlayerHealth>();
         _collisionDetector = GetComponent<CollisionDetector>();
     }
 
@@ -27,7 +28,7 @@ public class ItemCollector : MonoBehaviour
 
     private void Start()
     {
-        _gemsView.Display(_gems);
+        CollectGem?.Invoke(_gems);
     }
 
     private void CollectItem(Collider2D other)
@@ -49,7 +50,7 @@ public class ItemCollector : MonoBehaviour
 
     private void AddGem()
     {
-        _gemsView.Display(++_gems);
+        CollectGem?.Invoke(++_gems);
     }
 
     private void HealPlayer(float amount)

@@ -3,12 +3,6 @@ using UnityEngine.AI;
 
 public class BatSpawnPoints : MonoBehaviour
 {
-    private class BatSpawnPoint
-    {
-        public Transform Target;
-        public bool IsEmpty;
-    } 
-
     private BatSpawnPoint[] _batSpawnPoints;
 
     private void Start()
@@ -25,7 +19,7 @@ public class BatSpawnPoints : MonoBehaviour
         {
             if (point.IsEmpty)
             {
-                float distance = Vector3.Distance(batAgent.transform.position, point.Target.position);
+                float distance = batAgent.transform.position.SqrDistance(point.Target.position);
 
                 if (distance < closestDistance)
                 {
@@ -65,4 +59,10 @@ public class BatSpawnPoints : MonoBehaviour
             };
         }
     }
+
+    private class BatSpawnPoint
+    {
+        public Transform Target;
+        public bool IsEmpty;
+    } 
 }

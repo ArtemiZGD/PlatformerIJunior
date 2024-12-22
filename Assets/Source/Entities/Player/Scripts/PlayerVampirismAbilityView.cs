@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class PlayerVampirismAbilityView : BarView
+public class PlayerVampirismAbilityView : MonoBehaviour
 {
+    [SerializeField] private PlayerVampirismAbility _playerVampirismAbility;
+    [SerializeField] private SmoothBar _bar;
     [SerializeField] private ParticleSystem _particleSystem;
     [SerializeField] private float _particlesRate;
     [SerializeField] private float _minParticleSpeed;
@@ -20,28 +22,48 @@ public class PlayerVampirismAbilityView : BarView
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    private void OnEnable()
+    {
+        _playerVampirismAbility.ChangeActivation += SetActive;
+        _playerVampirismAbility.SpawnParticles += SpawnParticles;
+        _playerVampirismAbility.ChangeBarAmount += ChangeBarAmount;
+    }
+
+    private void OnDisable()
+    {
+        _playerVampirismAbility.ChangeActivation -= SetActive;
+        _playerVampirismAbility.SpawnParticles -= SpawnParticles;
+        _playerVampirismAbility.ChangeBarAmount -= ChangeBarAmount;
+    }
+
+    private void Start()
+    {
+        Initialize(_playerVampirismAbility.VampirismRadius);
+        _bar.Initialize(_playerVampirismAbility.StartAmount);
+    }
+
     private void LateUpdate()
     {
         UpdateParticleVelocities();
     }
 
-    public override float GetStartValue()
-    {
-        return 1;
-    }
-
-    public void Initialize(float radius)
+    private void Initialize(float radius)
     {
         transform.localScale = radius * 2 * Vector2.one;
         SetActive(false);
     }
 
-    public void SetActive(bool active)
+    private void SetActive(bool active)
     {
         _spriteRenderer.enabled = active;
     }
 
-    public void SpawnParticles(Transform from, float duration)
+    private void ChangeBarAmount(float amount)
+    {
+        _bar.UpdateTargetAmount(amount);
+    }
+
+    private void SpawnParticles(Transform from, float duration)
     {
         if (_isEmitionActive.Contains(from)) return;
 
@@ -84,7 +106,7 @@ public class PlayerVampirismAbilityView : BarView
 
             if (direction.magnitude < 0.1f)
             {
-               _particles[i].remainingLifetime = 0;
+                _particles[i].remainingLifetime = 0;
             }
 
             _particles[i].velocity = direction.normalized * _particles[i].velocity.magnitude;

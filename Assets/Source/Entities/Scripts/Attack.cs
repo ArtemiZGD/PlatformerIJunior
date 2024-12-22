@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class Attack : MonoBehaviour
 {
-    private const int One = 1;
+    private const int ReversingNumber = 1;
 
     [SerializeField] private int _damage;
     [SerializeField] private float _attackSpeed;
@@ -23,12 +23,7 @@ public abstract class Attack : MonoBehaviour
 
     protected abstract void ProcessAttack();
 
-    protected bool IsAbleToAttack()
-    {
-        if (_attackTimer >= One / _attackSpeed) return true;
-
-        return false;
-    }
+    protected bool IsAbleToAttack() => _attackTimer >= ReversingNumber / _attackSpeed;
 
     protected void ResetTimer()
     {
